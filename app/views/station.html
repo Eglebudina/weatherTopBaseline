@@ -1,0 +1,43 @@
+#{extends 'main.html' /}
+#{set title:'Station' /}
+
+#{menu id:"dashboard"/}
+
+<section class="ui segment">
+  <h2 class="ui header">
+    ${station.name}
+  </h2>
+      <div class="ui five cards inverted">
+        <div class="card">
+          <div class="extra">
+            <h2 class="header">${station.name}</h2>
+          </div>
+        </div>
+        <div class="card">
+          <div class="extra">
+            <h2 class="header">Weather</h2>
+            <h4 class="header">${station.codeToText(station.readings.code.last())}</h4>
+          </div>
+        </div>
+        <div class="card">
+          <div class="extra">
+            <h2 class="header">Temp</h2>
+            <h4 class="header">${station.calculateCelcius(station.readings.temperature)} C</h4>
+            <h4 class="header">${station.calculateFahrenheit(station.readings.temperature)} F</h4>
+          </div>
+        </div>
+        <div class="card">
+          <div class="extra">
+            <h2 class="header">Wind</h2>
+            <h4 class="header">${station.windBeaufort(station.readings.windSpeed.last())} bft</h4>
+          </div>
+        </div>
+        <div class="card">
+          <div class="extra">
+            <h2 class="header">Pressure</h2>
+            <h4 class="header">${station.pressure(station.readings.pressure.last())} hpa</h4>
+          </div>
+        </div>
+      </div>
+  #{listreadings station:station /}
+</section>
